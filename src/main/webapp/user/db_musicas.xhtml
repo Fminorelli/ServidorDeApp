@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>JSF JDBC Integration</title>
+
+</h:head>
+<h:body>
+	<h2>Musicas</h2>
+        <h:dataTable value="#{dbView.musicas}" var="mus" border="2">
+		<h:column>
+			<f:facet name="header">Nome</f:facet>
+         #{mus.nome}
+      </h:column>
+		<h:column>
+			<f:facet name="header">Artista</f:facet>
+         #{mus.artista}
+      </h:column>
+		<h:column>
+			<f:facet name="header">Album</f:facet>
+           #{mus.gravadora}
+       </h:column>
+            
+            <h:column>
+                <h:form>
+                    <h:commandButton action="#{dbView.removerMusica(mus)}" value="Remover musica"></h:commandButton>
+            </h:form>
+            </h:column>
+	</h:dataTable>
+        
+<h:form>
+    <h3>Cadastrar nova Musica</h3>
+	<h:panelGrid columns="2">
+        <h:outputLabel for="Nome">Nome da musica:</h:outputLabel>
+        <h:inputText id="Nome" value="#{dbView.nome}" required="true" requiredMessage="Insira o nome da musica" maxlength="255"></h:inputText>
+        <h:outputLabel for="Artista">Artista</h:outputLabel>
+        <h:inputText id="Artista" value="#{dbView.artista}" required="false" maxlength="255"></h:inputText>
+        <h:outputLabel for="Album">Album</h:outputLabel>
+        <h:inputText id="Gravadora" value="#{dbView.gravadora}" required="false" maxlength="255"></h:inputText>
+        <h:commandButton action="#{dbView.register()}" value="Cadastrar"></h:commandButton>
+
+		</h:panelGrid>
+
+	</h:form>
+	
+</h:body>
+</html>
